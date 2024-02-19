@@ -25,7 +25,7 @@ function Game(props) {
         return () => {
             socket.off("joinGame");
         };
-    }, []);
+    });
 
     const handleRole = () => {
         setShowRole(!showRole);

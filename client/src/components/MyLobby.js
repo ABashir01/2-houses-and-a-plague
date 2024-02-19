@@ -115,7 +115,7 @@ function MyLobby(props) {
         socket.off("setLeader");
         socket.off("closeNameModal");
       };
-    });
+    }, []);
   
     return (
       <Container className="mt-4">

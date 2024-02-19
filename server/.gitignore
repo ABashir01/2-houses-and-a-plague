@@ -2,5 +2,5 @@
 /.env
 /*.env
 
-.dockerignore
-Dockerfile.node
+/.dockerignore
+/Dockerfile.node

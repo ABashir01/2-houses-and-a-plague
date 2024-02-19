@@ -1,7 +1,7 @@
 import './App.css';
-import React, {Component, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import io from 'socket.io-client';
-import {BrowserRouter as Router, Route, Routes, useNavigate, useLocation} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import HomePage from './components/HomePage';
 import MyLobby from './components/MyLobby';
@@ -13,7 +13,6 @@ import Header from './components/Header';
 const socket = io.connect("http://localhost:3001");
 
 function App() {
-  const [players, setPlayers] = useState([]);
   const [myRoomCode, setMyRoomCode] = useState(null);
   const [playerRole, setPlayerRole] = useState(null);
 
