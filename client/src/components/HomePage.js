@@ -6,6 +6,7 @@ function HomePage(props) {
     const navigate = useNavigate();
     const socket = props.socket;
     const [myRoomCode, setMyRoomCode] = useState("");
+    const [noRoomCode, setNoRoomCode] = useState(false);
   
     // This function calls the socket event to join a new room then sets the room code
     function createNewRoom() {
@@ -19,8 +20,12 @@ function HomePage(props) {
     }
 
     function goToRoom() {
-      let lobbyString = '/lobby/' + myRoomCode.toString();
-      navigate(lobbyString);
+      if (myRoomCode) {
+        let lobbyString = '/lobby/' + myRoomCode.toString();
+        navigate(lobbyString);
+      } else {
+        setNoRoomCode(true);
+      }
     }
 
     function roomCodeChange(event) {
@@ -37,6 +42,7 @@ function HomePage(props) {
           <input onChange={roomCodeChange} placeholder="Enter room code here"></input>
           <Button onClick={goToRoom} variant="secondary">Join</Button>
         </form>
+        {noRoomCode ? <p className="text-danger">Please enter a room code</p> : null}
         <a href="https://cdn.1j1ju.com/medias/ef/63/0c-two-rooms-and-a-boom-rulebook.pdf" target="_blank" rel="noreferrer" className="btn btn-dark mt-5" role="button">Rulebook</a>
         <div className="w-75 d-flex flex-column m-auto">
           <p className="mt-5 mb-1 text-muted small">Website made by <a href="https://ahad-bashir-portfolio.netlify.app/" className="text-muted" target="_blank" rel="noreferrer">Ahad Bashir</a></p>

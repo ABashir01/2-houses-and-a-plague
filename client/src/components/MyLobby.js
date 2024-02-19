@@ -121,7 +121,7 @@ function MyLobby(props) {
       <Container className="mt-4">
           <Row className="justify-content-md-center">
               <Col md={6} className="text-center">
-                  <CopyToClipboard text={"http://localhost:3000/lobby/" + lobbyCode}>
+                  <CopyToClipboard text={window.location.href}>
                       <Button variant="secondary" onClick={handleCopyClicked}>{copyClicked ? "Copied!" : "Copy Invite"}</Button>
                   </CopyToClipboard>
                   <h1 className="mt-3">Players: {numberOfPlayers}</h1>

@@ -9,8 +9,7 @@ import Game from './components/Game';
 import Header from './components/Header';
 
 
-
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect(process.env.REACT_APP_SERVER_URL);
 
 function App() {
   const [myRoomCode, setMyRoomCode] = useState(null);
