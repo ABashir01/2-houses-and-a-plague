@@ -23,6 +23,7 @@ const io = new Server(server, {
         origin: process.env.CORS_ORIGIN,
         methods: ["GET", "POST"],
     },
+    connectionStateRecovery: {}
 });
 
 server.listen(3001, () => {
@@ -186,6 +187,7 @@ io.on("connection", (socket) => {
                 // })
                 let roleObject = await Role.findOne({roleName: roleList[randomIndex]});
                 io.to(user).emit("setRole", roleObject.toObject());
+                activeRooms[lobbyCode].users[user].currRole = roleObject.toObject();
 
                 // io.to(user).emit("setRole", roleList[randomIndex]);
 
@@ -217,6 +219,8 @@ io.on("connection", (socket) => {
         if ((!lobbyCode in activeRooms) || (!activeRooms[lobbyCode].users) || (!socket.id in activeRooms[lobbyCode].users)) {
             callback(true);
         }
+
+        socket.emit("getRole", activeRooms[lobbyCode].users[socket.id].currRole)
 
         callback(false);
     })

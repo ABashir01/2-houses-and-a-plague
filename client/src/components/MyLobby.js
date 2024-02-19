@@ -134,7 +134,7 @@ function MyLobby(props) {
                           );
                       })}
                   </ListGroup>
-                  <Button variant={ready ? "danger" : "success"} onClick={handleReady} className="me-2">
+                  <Button variant={ready ? "danger" : "success"} onClick={handleReady}>
                       {ready ? "Unready" : "Ready"}
                   </Button>
                   {isLeader && <Button variant="primary" onClick={handleStartGame}>Start Game</Button>}

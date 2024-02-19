@@ -10,6 +10,7 @@ function Game(props) {
 
     const navigate = useNavigate();
     const socket = props.socket;
+    let playerRole = props.playerRole
 
     useEffect(() => {
         if (!joined) {
@@ -17,13 +18,19 @@ function Game(props) {
                 if (joinFail) {
                     navigate("/");
                 }
+
             });
             
             setJoined(true);
         }
 
+        socket.on("getRole", (newPlayerRole) => {
+            playerRole = newPlayerRole;
+        });
+
         return () => {
             socket.off("joinGame");
+            socket.off("getRole");
         };
     }, [joined, socket, props.roomCode, navigate]);
 
@@ -45,9 +52,9 @@ function Game(props) {
                         <div>
                             <Card.Text>
                                 <hr />
-                                <h5><b>Role Name:</b> {showRole ? props.playerRole.roleName : "???"}</h5>
-                                <h5><b>Team Color:</b> {props.playerRole.teamColor}</h5>
-                                <p><b>Role Description:</b> {showRole ? props.playerRole.roleDescription : "???"}</p>
+                                <h5><b>Role Name:</b> {showRole ? playerRole.roleName : "???"}</h5>
+                                <h5><b>Team Color:</b> {playerRole.teamColor}</h5>
+                                <p><b>Role Description:</b> {showRole ? playerRole.roleDescription : "???"}</p>
                                 <hr />
                               </Card.Text>
                         </div>
