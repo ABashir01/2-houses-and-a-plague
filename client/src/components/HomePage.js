@@ -41,7 +41,7 @@ function HomePage(props) {
         <div className="w-75 d-flex flex-column m-auto">
           <p className="mt-5 mb-1 text-muted small">Website made by <a href="https://ahad-bashir-portfolio.netlify.app/" className="text-muted" target="_blank" rel="noreferrer">Ahad Bashir</a></p>
           <p className="mb-1 text-muted small"><a href="https://www.tuesdayknightgames.com/tworoomsandaboom" target="_blank" rel="noreferrer" className="text-muted">Two Rooms and a Boom</a> designed by Tuesday Knight Games</p>
-          <a className="m-0 text-muted small" href="https://github.com/ABashir01" target="_blank" rel="noreferrer">Github</a>
+          <a className="m-0 text-muted small" href="https://github.com/ABashir01/2-houses-and-a-plague" target="_blank" rel="noreferrer">Github</a>
         </div>
         
       </div>

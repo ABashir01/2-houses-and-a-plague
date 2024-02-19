@@ -6,7 +6,7 @@ const cors = require("cors");
 const { randomInt } = require('crypto');
 const { callbackify } = require('util');
 const connectDB = require('./connectMongo');
-const Role = require('./Role');
+const Role = require('./roleModel');
 
 require('dotenv').config();
 
@@ -139,14 +139,16 @@ io.on("connection", (socket) => {
             console.log("User being checked:", user);
 
             //If there are less than 6 players, can't start the game
-            if (activeRooms[lobbyCode].numberOfPlayers < 2) {
+            if (activeRooms[lobbyCode].numberOfPlayers < 6) {
                 allPlayersReady = false;
+                socket.emit("unableToStartGame", "Need at least 6 players to start")
                 break;
             }
 
             //If the user has a set username and is not ready, the game does NOT start
             if ("username" in activeRooms[lobbyCode].users[user] && !(activeRooms[lobbyCode].users[user].ready)) {
                 allPlayersReady = false;
+                socket.emit("unableToStartGame", "All players must be ready to start")
                 break;
             }
 

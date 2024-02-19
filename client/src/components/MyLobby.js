@@ -19,6 +19,7 @@ function MyLobby(props) {
     const [ready, setReady] = useState(false);
     const [isLeader, setIsLeader] = useState(false);
     const [copyClicked, setCopyClicked] = useState(false);
+    const [unableToStartMessage, setUnableToStartMessage] = useState("");
     
     const lobbyCode = Number(useLocation().pathname.replace("/lobby/", ""));
     props.setRoomCode(lobbyCode);
@@ -89,6 +90,10 @@ function MyLobby(props) {
             setSomebodyElseName(true);
         }
       });
+
+      socket.on("unableToStartGame", (message) => {
+        setUnableToStartMessage(message);
+      })
   
       if (!joined) {
         socket.emit("join_lobby", lobbyCode, (joinSuccess) => {
@@ -151,6 +156,7 @@ function MyLobby(props) {
               </Modal.Footer>
           </Modal>
 
+          <p className="text-danger">{unableToStartMessage}</p>
           <a href="https://cdn.1j1ju.com/medias/67/db/c8-two-rooms-and-a-boom-character-guide.pdf" target="_blank" rel="noreferrer" className="btn btn-dark mt-5" role="button">Roles</a>
           <p className="mt-4 text-muted">DISCLAIMER: Currently only supporting basic roles (President, Bomber, and Gambler)</p>
       </Container>

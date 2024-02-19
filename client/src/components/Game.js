@@ -18,6 +18,7 @@ function Game(props) {
                     navigate("/");
                 }
             });
+            
             setJoined(true);
         }
 
