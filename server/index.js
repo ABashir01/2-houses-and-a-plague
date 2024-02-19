@@ -220,7 +220,7 @@ io.on("connection", (socket) => {
             callback(true);
         }
 
-        socket.emit("getRole", activeRooms[lobbyCode].users[socket.id].currRole)
+        // socket.emit("getRole", activeRooms[lobbyCode].users[socket.id].currRole)
 
         callback(false);
     })

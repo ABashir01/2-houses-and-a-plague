@@ -24,13 +24,13 @@ function Game(props) {
             setJoined(true);
         }
 
-        socket.on("getRole", (newPlayerRole) => {
-            playerRole = newPlayerRole;
-        });
+        // socket.on("getRole", (newPlayerRole) => {
+        //     playerRole = newPlayerRole;
+        // });
 
         return () => {
             socket.off("joinGame");
-            socket.off("getRole");
+            // socket.off("getRole");
         };
     }, [joined, socket, props.roomCode, navigate]);
 
