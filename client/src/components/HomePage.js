@@ -11,10 +11,7 @@ function HomePage(props) {
   
     // This function calls the socket event to join a new room then sets the room code
     function createNewRoom() {
-
-      setTimeout(() => {
-        setCreatingRoom(true);
-      }, "10000")
+      setCreatingRoom(true);
 
       socket.emit("create_lobby" , (roomCode) => {
         console.log('/lobby/', roomCode);
@@ -46,7 +43,7 @@ function HomePage(props) {
           keyboard={false}
         >
           <ModalBody>
-            creating Lobby...
+            Creating Lobby...
           </ModalBody>
 
         </Modal>
