@@ -30,6 +30,10 @@ server.listen(3001, () => {
     console.log("Server is running");
 })
 
+app.get('/', (req, res) => {
+    res.send("GET Request Received");
+})
+
 io.on("connection", (socket) => {
 
     socket.on("create_lobby", async (callback) => {
@@ -120,10 +124,6 @@ io.on("connection", (socket) => {
         activeRooms[lobbyCode].users[socket.id].ready = !(activeRooms[lobbyCode].users[socket.id].ready);
         // callback(activeRooms[lobbyCode].users);
         io.to(lobbyCode).emit('update_users', activeRooms[lobbyCode]);
-    })
-
-    app.get('/', (req, res) => {
-        res.send("GET Request Received")
     })
 
     //Checks that all sockets are ready for game start
