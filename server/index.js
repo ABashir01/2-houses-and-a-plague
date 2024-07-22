@@ -122,6 +122,10 @@ io.on("connection", (socket) => {
         io.to(lobbyCode).emit('update_users', activeRooms[lobbyCode]);
     })
 
+    app.get('/', (req, res) => {
+        res.send("GET Request Received")
+    })
+
     //Checks that all sockets are ready for game start
     socket.on("startGame", async (lobbyCode) => {
         console.log("startGame called");
