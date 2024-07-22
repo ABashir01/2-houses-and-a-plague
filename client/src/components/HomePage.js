@@ -1,15 +1,21 @@
 import React, {useState} from "react";
 import { useNavigate} from "react-router-dom";
-import {Button} from 'react-bootstrap';
+import {Button, Modal, ModalBody} from 'react-bootstrap';
 
 function HomePage(props) {
     const navigate = useNavigate();
     const socket = props.socket;
     const [myRoomCode, setMyRoomCode] = useState("");
     const [noRoomCode, setNoRoomCode] = useState(false);
+    const [creatingRoom, setCreatingRoom] = useState(false)
   
     // This function calls the socket event to join a new room then sets the room code
     function createNewRoom() {
+
+      setTimeout(() => {
+        setCreatingRoom(true);
+      }, "10000")
+
       socket.emit("create_lobby" , (roomCode) => {
         console.log('/lobby/', roomCode);
         props.setRoomCode(roomCode);
@@ -34,6 +40,16 @@ function HomePage(props) {
   
     return (
       <div className='homePage mt-4'>
+        <Modal
+          show={creatingRoom}
+          backdrop="static"
+          keyboard={false}
+        >
+          <ModalBody>
+            creating Lobby...
+          </ModalBody>
+
+        </Modal>
         <h1 className="font-weight-bold mb-0">Two Houses and a Plague</h1>
         <p className="mt-0 font text-secondary">Web Version of Two Rooms and a Boom</p>
         <hr/>

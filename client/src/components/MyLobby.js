@@ -137,7 +137,7 @@ function MyLobby(props) {
                   <Button variant={ready ? "danger" : "success"} onClick={handleReady}>
                       {ready ? "Unready" : "Ready"}
                   </Button>
-                  {isLeader && <Button variant="primary" onClick={handleStartGame}>Start Game</Button>}
+                  {isLeader ? <Button variant="primary" onClick={handleStartGame}>Start Game</Button> : null}
                   
               </Col>
           </Row>
